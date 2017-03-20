@@ -1,6 +1,6 @@
 # learn@Softeam Voting App Demo
 
-## Mise en place Dockerfile du Java Backend 
+## Mise en place Dockerfile du Java Backend
 
 1. Le Dockerfile
 2. Build de l'image
@@ -10,7 +10,7 @@ $ docker build -t worker:v1 .
 ...
 ```
 _Download des dépendances au premier build_
-  
+
 3. Exemple de run : démarrage du worker
 ```
 $ docker run worker:v1
@@ -32,8 +32,18 @@ $ docker run worker:v1
 $ cat docker-compose.yml
 $ docker-compose up
 ```
-_ Avec ou sans les networks ? montrer l'utilité ? _
+_Avec ou sans les networks ? montrer l'utilité ?_
 
-2. c'est testable 
+2. c'est testable
 http://localhost:5000
 
+3. On modifie le code app.py
+_reload magique !!_
+
+## Swarm mode / compose stack
+
+1. création d'un cluster
+
+2. démarrage du stack
+
+3. scaling
