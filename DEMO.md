@@ -32,3 +32,8 @@ $ docker run worker:v1
 $ cat docker-compose.yml
 $ docker-compose up
 ```
+_ Avec ou sans les networks ? montrer l'utilité ? _
+
+2. c'est testable 
+http://localhost:5000
+
