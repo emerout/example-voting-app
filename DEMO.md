@@ -1,8 +1,34 @@
-learn@Softeam Voting App Demo
-=========
+# learn@Softeam Voting App Demo
 
-* Mise en place Dockerfile du Java Backend
-  docker build -t worker:v1 .
-  Download des dépendances au premier build
-* Exemple de run
-  docker run worker:v1
+## Mise en place Dockerfile du Java Backend 
+
+1. Le Dockerfile
+2. Build de l'image
+```
+$ cd worker
+$ docker build -t worker:v1 .
+...
+```
+_Download des dépendances au premier build_
+  
+3. Exemple de run : démarrage du worker
+```
+$ docker run worker:v1
+Waiting for redis
+...
+```
+_normal, pas de serveur redis ..._
+
+4. Exemple de modification du code
+```
+$ docker build -t worker:v1 .
+$ docker run worker:v1
+```
+
+## Docker Compose
+
+1. On va pouvoir démarrer les différents composants
+```
+$ cat docker-compose.yml
+$ docker-compose up
+```
