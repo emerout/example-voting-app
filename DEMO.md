@@ -43,7 +43,15 @@ _reload magique !!_
 ## Swarm mode / compose stack
 
 1. création d'un cluster
+   * digital-ocean ou aws ?
+   * docker-machine create
 
-2. démarrage du stack
+2. démarrage des services sur le cluster
+   * création du docker-stack.yml
+   * déploiement sur le cluster
 
-3. scaling
+3. test de l'application
+   * voici l'url du service : http://ip-du-cluster
+   * vous pouvez voter !!!
+
+4. scaling
