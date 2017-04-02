@@ -43,15 +43,62 @@ _reload magique !!_
 ## Swarm mode / compose stack
 
 1. création d'un cluster
-   * digital-ocean ou aws ?
-   * docker-machine create
+    * On a choisi Amazon Web Service, on pourrait utiliser Microsoft Azure, Digital Ocean, (bientôt ?) Google Cloud Platform
+      ```
+      $ ls -l ~/.aws
+      $ docker-machine create --driver amazonec2 --amazonec2-region eu-west-1 --amazonec2-security-group myswarm aws01
+      ```
+      VM EC2 créée, docker provisonné, clefs déployées
+
+    * liste des machines distantes
+      ```
+      $ docker-machine ls
+      ```
+
+    * ssh sur un noeud
+      ```
+      $ docker-machine ssh aws01
+      ```
+
+    * initialisation du manager
+      ```
+      docker-machine ssh aws01 "sudo docker swarm init"
+      ```
+    * initialisation des noeuds
+      ```
+      docker-machine ssh aws02 "sudo docker swarm join ..."
+      ```
+    * le cluster est prêt
+      ```
+      $ eval $(docker-machine env aws01)
+      $ docker node ls
+      ```
 
 2. démarrage des services sur le cluster
+   * _on backstage : build + push emerout/examplevotingapp... sur docker.io_
    * création du docker-stack.yml
    * déploiement sur le cluster
+      ```
+      $ docker stack deploy -c docker-stack.yml vote
+      ```
+   * c'est démarré
+       ```
+       $ docker stack ls
+       $ docker stack ps vote
+       $ docker service ls
+       ```
+
 
 3. test de l'application
-   * voici l'url du service : http://ip-du-cluster
+   * voici l'url du service : http://54.171.122.125 ou http://bit.do/eyc
    * vous pouvez voter !!!
-
+   *  
+     ```
+     $ curl -s 'http://54.171.122.125/' -XPOST --data 'vote=a' | grep Processed
+     ```
 4. scaling
+   * modification du fichier compose
+   * via commande docker
+     ```
+     docker service scale vote_vote=10
+     ```
